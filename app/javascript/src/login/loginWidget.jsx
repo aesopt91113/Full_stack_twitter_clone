@@ -3,55 +3,55 @@ import ReactDOM from 'react-dom';
 import { login } from '@src/login/loginCode';
 
 class LoginWidget extends React.Component {
-  state = {
-    params: {
-      username: '',
-      password: '',
-    },
-    error: '',
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      params: {
+        username: '',
+        password: '',
+      },
+      error: '',
+    }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleLogin = this.handleLogin.bind(this)
   }
 
   handleChange = (e) => {
-    this.setState ({
-      [e.target.name]: event.target.value
-    });
+    const oldParams = this.state.params
+    this.setState({
+      params: {
+        ...oldParams,
+        [e.target.name]: e.target.value
+      }
+    })
   }
 
-  login = (e) => {
-    if (e) { e.preventDefault(); }
-    this.setState({
-      error: '',
-    });
-
-    fetch('/api/sessions', {
-      method: 'POST',
-      body: JSON.stringify({})
-    }).then(function (resp) {
-      if (resp.success) {
-        const params = new URLSearchParams(window.location.search);
-        const redirect_url = params.get('redirect_url') || '/';
-        window.location = redirect_url;
-      }
-    }).catch(function (err) {
-      this.setState({
-        error: 'Could not log in.'
-      })
+  handleLogin(e) {
+    this.setState({ error: '' })
+    login(e, this.state.params, (error) => {
+      this.setState({ error })
     })
   }
 
   render () {
+    const { params: { username, password }, error } = this.state;
+    const { optClass } = this.props
+
     return (
-      <form onSubmit={this.login}>
+      <form onSubmit={() => { this.handleLogin(e) }} className={optClass}>
+        <label className="font-weight-bold">Login</label>
+        { error && <label className="font-weight-bold text-danger">New to Twitter?</label> }
+
         <div className="form-group">
-          <input type="text" className="form-control" placeholder="Username" />
+          <input type="text" className="form-control" placeholder="Username" onChange={this.handleChange} name="username" value={username} />
         </div>
-        <div className="row">
-          <div className="col">
-            <input type="text" className="form-control" placeholder="Password" />
-          </div>
-          <div className="col">
-            <button type="submit" className="btn btn-primary">Log in</button>
-          </div>
+
+        <div className="form-inline">
+          <input type="text" className="form-control flex-grow-1 mr-3" placeholder="Password" onChange={this.handleChange} name="password" value={password} />
+
+          <button type="submit" className="btn btn-primary">Log in</button>
         </div>
       </form>
     )

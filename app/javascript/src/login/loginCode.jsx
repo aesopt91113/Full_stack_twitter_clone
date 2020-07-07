@@ -1,58 +1,50 @@
 import React from 'react';
+import { handleErrors } from '@src/utils/fetchHelper';
 
-signup(e) {
+export const signup = (e, params, errorCB) => {
   if (e) { e.preventDefault(); }
-  this.setState({
-    error: '',
-  });
+
+  console.log(JSON.stringify({
+    user: params
+  }))
 
   fetch('/api/users', {
     method: 'POST',
     body: JSON.stringify({
-      user: this.state.params
-    })
+      user: params
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
   .then(handleErrors)
   .then(response => {
-    if (response.user) {
-      console.log(response)
-      this.login();
-    }
+    login(null, params)
   })
   .catch(error => {
-    this.setState({
-      error: 'Could not sign up.',
-    })
+    if (errorCB) errorCB(error)
   })
 }
 
-login(e) {
+export const login = (e, params, errorCB) => {
   if (e) { e.preventDefault(); }
-  this.setState({
-    error: '',
-  })
-
-  console.log('login button triggered')
 
   fetch('api/sessions', {
     method: 'POST',
     body: JSON.stringify({
-      user: this.state.params
-    })
+      user: params
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
   .then(handleErrors)
   .then(response => {
-    if (response.success) {
-      const params = new URLSearchParams(window.location.search);
-      const redirect_url = params.get('redirect_url') || '/';
-      window.location = redirect_url;
-    }
+    const query = new URLSearchParams(window.location.search);
+    const redirect_url = query.get('redirect_url') || '/';
+    window.location = redirect_url;
   })
   .catch(error => {
-    this.setState({
-      error: 'Could not log in.',
-    })
+    if (errorCB) errorCB(error);
   })
 }
-
-export default loginCode;

@@ -13,8 +13,9 @@ module Api
         render 'api/sessions/create'
       else
         render json: {
-          success: false
-        }
+          success: false,
+          message: "Crudential Error"
+        }, status: 400
       end
     end
 
