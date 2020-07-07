@@ -3,6 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+# jQuery
+gem 'jquery-rails'
+# bootstrap 4
+gem 'bootstrap', '~>4.5.0'
+# font awesome
+gem 'font-awesome-sass', '~>4.4.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use Puma as the app server
