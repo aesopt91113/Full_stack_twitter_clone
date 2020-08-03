@@ -18,7 +18,7 @@ class Home extends React.Component {
               <h4>Connect with your friends - and other fascinating people. Get in-the-moment updates on the things that interest you. And watch events unfold, in real time, from every angle.</h4>
             </div>
             <div className="col-5">
-              <LoginWidget />
+              <LoginWidget optClass="mb-3" />
               <SignupWidget/>
             </div>
           </div>
