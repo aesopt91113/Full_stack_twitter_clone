@@ -43,7 +43,7 @@ class SignupWidget extends React.Component {
     return (
       <form onSubmit={this.handleSignup}>
         <label className="font-weight-bold">New to Twitter?</label>
-        { error && <label className="font-weight-bold text-danger">New to Twitter?</label> }
+        { error && <label className="font-weight-bold text-danger">Error</label> }
 
         <div className="form-group">
           <input type="text" className="form-control" placeholder="Username" onChange={this.handleChange} name="username" value={username} />

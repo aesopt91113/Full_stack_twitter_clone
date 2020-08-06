@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
     render 'home'
   end
 
-  # def login
-  #   render 'login'
-  # end
+  def loggedIn
+    render 'loggedIn'
+  end
 end

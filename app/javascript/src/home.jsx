@@ -1,15 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Layout from '@src/layout'
 import LoginWidget from '@src/login/loginWidget'
 import SignupWidget from '@src/login/signupWidget'
+import LoggedIn from './loggedIn'
 
 import './home.scss';
 
-class Home extends React.Component {
-
-  render () {
-    return (
+const HomeContent = (props) => {
+  return (
+    <React.Fragment>
       <Layout>
         <div className="container-fluid">
           <div className="row">
@@ -24,6 +25,20 @@ class Home extends React.Component {
           </div>
         </div>
       </Layout>
+    </React.Fragment>
+  )
+}
+
+class Home extends React.Component {
+
+  render () {
+    return (
+      <Router>
+        <Switch>
+          <Route path="/" exact component={HomeContent}  />
+          <Route path="/demo" exact component={LoggedIn}  />
+        </Switch>
+      </Router>
     )
   }
 }
