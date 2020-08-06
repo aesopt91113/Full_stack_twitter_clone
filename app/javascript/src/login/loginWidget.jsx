@@ -11,7 +11,7 @@ class LoginWidget extends React.Component {
         username: '',
         password: '',
       },
-      error: '',
+      error: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -32,7 +32,7 @@ class LoginWidget extends React.Component {
     this.setState({ error: '' })
     login(e, this.state.params, (error) => {
       this.setState({ error })
-    })
+    }, this.props.history)
   }
 
   render () {
@@ -40,7 +40,7 @@ class LoginWidget extends React.Component {
     const { optClass } = this.props
 
     return (
-      <form onSubmit={() => { this.handleLogin(e) }} className={optClass}>
+      <form onSubmit={(e) => { this.handleLogin(e) }} className={optClass}>
         <label className="font-weight-bold">Login</label>
         { error && <label className="font-weight-bold text-danger">New to Twitter?</label> }
 

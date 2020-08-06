@@ -1,2 +1,2 @@
 // loggedIn.js
-import '@src/loggedIn'
+import '@src/user-profile'

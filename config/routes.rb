@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
 
-  get '*path' => 'static_pages#home'
-  get '/loggedIn' => 'static_pages#loggedIn'
-
   namespace :api do
     # USERS
     post '/users'                  => 'users#create'
@@ -21,5 +18,7 @@ Rails.application.routes.draw do
     get  '/tweets/search/:keyword' => 'tweets#search'
 
   end
+
+  get '*path' => 'static_pages#home'
 
 end
