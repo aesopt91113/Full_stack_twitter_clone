@@ -43,7 +43,7 @@ export const login = (e, params, errorCB, history) => {
   .then(response => {
     const query = new URLSearchParams(window.location.search);
     const redirect_url = query.get('redirect_url') || '/';
-    history.push(`/user/${params.username}`)
+    history.push(`/users/${params.username}`)
   })
   .catch(error => {
     if (errorCB) errorCB(error);
