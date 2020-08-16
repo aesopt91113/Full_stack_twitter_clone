@@ -9,9 +9,9 @@ class SignupWidget extends React.Component {
 
     this.state = {
       params: {
-        username: 'haru',
-        email: 'test1@test.com',
-        password: '12345678',
+        username: '',
+        email: '',
+        password: '',
       },
       error: '',
     }
