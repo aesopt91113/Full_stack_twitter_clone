@@ -1,8 +1,8 @@
 import { handleErrors } from '@src/utils/fetchHelper';
 
-export const signup = (e, params, errorCB) => {
+export const signup = (e, params, errorCB, history) => {
   if (e) { e.preventDefault(); }
-
+  // console.log(history)
   console.log(JSON.stringify({
     user: params
   }))
@@ -18,18 +18,19 @@ export const signup = (e, params, errorCB) => {
   })
   .then(handleErrors)
   .then(response => {
-    login(null, params)
+    console.log(params)
+    login(e, params, null, history)
   })
   .catch(error => {
     if (errorCB) errorCB(error)
   })
 }
 
+//------------------------------------------------------------------
 export const login = (e, params, errorCB, history) => {
   if (e) { e.preventDefault(); }
 
-  console.log('login trigger')
-
+  console.log(params.username)
   fetch('api/sessions', {
     method: 'POST',
     body: JSON.stringify({
@@ -41,6 +42,8 @@ export const login = (e, params, errorCB, history) => {
   })
   .then(handleErrors)
   .then(response => {
+    console.log(response)
+    console.log(params.username, history)
     const query = new URLSearchParams(window.location.search);
     const redirect_url = query.get('redirect_url') || '/';
     history.push(`/users/${params.username}`)

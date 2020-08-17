@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { login } from '@src/login/loginCode';
 
 class LoginWidget extends React.Component {
@@ -29,6 +28,7 @@ class LoginWidget extends React.Component {
   }
 
   handleLogin(e) {
+    console.log(history)
     this.setState({ error: '' })
     login(e, this.state.params, (error) => {
       this.setState({ error })
@@ -42,7 +42,7 @@ class LoginWidget extends React.Component {
     return (
       <form onSubmit={(e) => { this.handleLogin(e) }} className={optClass}>
         <label className="font-weight-bold">Login</label>
-        { error && <label className="font-weight-bold text-danger">New to Twitter?</label> }
+        { error && <label className="pl-2 font-weight-bold text-danger"> USERNAME NOT FOUND</label> }
 
         <div className="form-group">
           <input type="text" className="form-control" placeholder="Username" onChange={this.handleChange} name="username" value={username} />

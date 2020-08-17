@@ -14,7 +14,7 @@ class Home extends React.Component {
     })
       .then(handleErrors)
       .then(data => {
-        console.log(data)
+        // console.log(data)
         if (data.authenticated) {
           this.props.history.push(`/users/${data.username}`)
         }

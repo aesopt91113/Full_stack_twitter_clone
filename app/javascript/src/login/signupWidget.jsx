@@ -1,6 +1,5 @@
 // signupWidget.jsx
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { signup } from '@src/login/loginCode';
 
 class SignupWidget extends React.Component {
@@ -10,8 +9,8 @@ class SignupWidget extends React.Component {
     this.state = {
       params: {
         username: '',
-        email: '',
         password: '',
+        email: '',
       },
       error: '',
     }
@@ -34,7 +33,7 @@ class SignupWidget extends React.Component {
     this.setState({ error: '' })
     signup(e, this.state.params, (error) => {
       this.setState({ error })
-    })
+    }, history)
   }
 
   render() {
@@ -43,7 +42,7 @@ class SignupWidget extends React.Component {
     return (
       <form onSubmit={this.handleSignup}>
         <label className="font-weight-bold">New to Twitter?</label>
-        { error && <label className="font-weight-bold text-danger">Error</label> }
+        { error && <label className="pl-2 font-weight-bold text-danger">Error, username taken</label> }
 
         <div className="form-group">
           <input type="text" className="form-control" placeholder="Username" onChange={this.handleChange} name="username" value={username} />
