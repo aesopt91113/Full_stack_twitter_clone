@@ -38,7 +38,7 @@ class Home extends React.Component {
             </div>
             <div className="col-5">
               <LoginWidget optClass="mb-3" history={this.props.history} />
-              <SignupWidget/>
+              <SignupWidget history={this.props.history} />
             </div>
           </div>
         </div>

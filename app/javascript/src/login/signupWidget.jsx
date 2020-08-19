@@ -33,7 +33,7 @@ class SignupWidget extends React.Component {
     this.setState({ error: '' })
     signup(e, this.state.params, (error) => {
       this.setState({ error })
-    }, history)
+    }, this.props.history)
   }
 
   render() {
