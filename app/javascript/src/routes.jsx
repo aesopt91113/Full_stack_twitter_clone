@@ -1,4 +1,4 @@
-// layout.js
+// routes.js
 import React from 'react';
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -7,7 +7,7 @@ import Home from './home'
 import UserProfile from './user-profile'
 import AllTweets from './allTweets'
 
-const Layout = (props) => {
+const Routes = (props) => {
   return (
     <Router>
       <Switch>
@@ -21,7 +21,7 @@ const Layout = (props) => {
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Layout />,
+    <Routes />,
     document.body.appendChild(document.createElement('div')),
   )
 })

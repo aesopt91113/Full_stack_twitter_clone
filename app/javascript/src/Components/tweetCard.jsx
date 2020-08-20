@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
@@ -10,7 +11,9 @@ export default ({ tweets, deleteTweet, username, disableDelete }) => (
 			<Col xs={6}>
 				<div className="card">
 					<div className="card-body">
-						<b className="card-title">{tweet.username}</b>
+						<Link to={`/users/${tweet.username}`}>
+							<b className="card-title">{tweet.username}</b>
+						</Link>	
 						<div>
 							{ tweet.message }
 						</div>

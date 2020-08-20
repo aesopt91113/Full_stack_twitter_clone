@@ -42,11 +42,10 @@ export const login = (e, params, errorCB, history) => {
   })
   .then(handleErrors)
   .then(response => {
-    console.log(response)
-    console.log(params.username, history)
-    // const query = new URLSearchParams(window.location.search);
-    // const redirect_url = query.get('redirect_url') || '/';
-    history.push(`/users/${params.username}`)
+    // console.log(response)
+    // console.log(params.username, history)
+    // history.push(`/users/${params.username}`)
+    history.push("/tweets")
   })
   .catch(error => {
     if (errorCB) errorCB(error);
